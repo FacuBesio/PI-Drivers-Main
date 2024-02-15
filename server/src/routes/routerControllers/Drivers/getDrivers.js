@@ -13,15 +13,16 @@ const getDrivers = async (req, res) => {
       : await findAllDrivers();
     if (driversDb.length > 0) drivers = [...formattedDrivers(driversDb)];
 
-    //* DRIVERS API
-    await findApiDataQueryName(name)
-      .then((driversApi) => {
-        if (driversApi) drivers = [...drivers, ...driversApi];
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
+    //* DRIVERS API QUERY NAME
+    name
+      ? await findApiDataQueryName(name)
+          .then((driversApi) => {
+            if (driversApi) drivers = [...drivers, ...driversApi];
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+      : null;
     //* CORRECION DE IMAGEN POR DEFAULT
     // const imagenPorDefecto = "imagenPorDefecto.jpg";
     // let driversResult = [];

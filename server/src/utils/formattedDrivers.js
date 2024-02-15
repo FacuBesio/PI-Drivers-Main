@@ -2,6 +2,7 @@ const formattedDrivers = (driversDb) => {
 
 const formattedDriversDb = driversDb.map((driver) => {
     const {
+      id,
       nombre,
       apellido,
       descripcion,
@@ -12,6 +13,7 @@ const formattedDriversDb = driversDb.map((driver) => {
     } = driver;
     const teams = Teams.map((team) => team.nombre);
     return {
+      id,
       nombre,
       apellido,
       descripcion,
