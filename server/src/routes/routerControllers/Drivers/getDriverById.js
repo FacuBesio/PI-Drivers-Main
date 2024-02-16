@@ -2,6 +2,7 @@ const findDriverById = require("../../../controllers/Drivers/findDriverById");
 const findApiDataById = require("../../../controllers/Api/findApiDataById");
 const formattedDriver = require("../../../utils/formattedDriver");
 const formatted_API_Driver = require("../../../utils/formatted_API_Driver");
+const { validate } = require("uuid");
 
 const getDriverById = async (req, res) => {
   try {
@@ -9,11 +10,13 @@ const getDriverById = async (req, res) => {
     const driver = [];
 
     //* DRIVER DB
-    // const driverDb = await findDriverById(id); // Retorna una promesa.
-    // if (driverDb) {
-    //   driver.push(formattedDriver(driverDb));
-    // }
-
+    const uuidValidate = validate(id.toString());
+    if (uuidValidate) {
+      const driverDb = await findDriverById(id); // Retorna una promesa.
+      if (driverDb) {
+        driver.push(formattedDriver(driverDb));
+      }
+    }
     //* DRIVER API
     await findApiDataById(Number(id))
       .then((driverApi) => {

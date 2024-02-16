@@ -1,10 +1,13 @@
 const findAllDrivers = require("../../../controllers/Drivers/findAllDrivers");
 const findApiDataQueryName = require("../../../controllers/Api/findApiDataQueryName");
 const formattedDrivers = require("../../../utils/formattedDrivers");
+const formatted_API_Drivers = require("../../../utils/formatted_API_Drivers");
+const defaultImage = require("../../../utils/defaultImage");
+const pagination = require("../../../utils/pagination");
 
 const getDrivers = async (req, res) => {
   try {
-    const { name } = req.query;
+    const { name, page = 1, pageSize = 15 } = req.query;
     let drivers = [];
 
     //* DRIVERS DB
@@ -17,26 +20,30 @@ const getDrivers = async (req, res) => {
     name
       ? await findApiDataQueryName(name)
           .then((driversApi) => {
-            if (driversApi) drivers = [...drivers, ...driversApi];
+            if (driversApi)
+              drivers = [...drivers, ...formatted_API_Drivers(driversApi)];
           })
           .catch((error) => {
             console.error(error);
           })
       : null;
-    //* CORRECION DE IMAGEN POR DEFAULT
-    // const imagenPorDefecto = "imagenPorDefecto.jpg";
-    // let driversResult = [];
 
-    // if (drivers.length > 0) {
-    //   driversResult = drivers.map((data) => {
-    //     if (drivers.imagen === undefined || drivers.imagen === null) {
-    //       drivers.imagen = imagenPorDefecto;
-    //     }
-    //     return data;
-    //   });
-    // }
-    return drivers.length > 0
-      ? res.status(200).json(drivers)
+    //* CORRECION DE IMAGEN POR DEFAULT ({ imagen:"" })
+    drivers = defaultImage(drivers);
+ 
+    //* PAGINACION
+    const totalResults = drivers.length;
+    const paginatedDrivers = pagination(drivers, page, pageSize);
+  
+
+    return paginatedDrivers.length > 0
+      ? res.status(200).json({
+          totalResults,
+          page,
+          pageSize,
+          totalPages: Math.ceil(totalResults / pageSize),
+          drivers: paginatedDrivers,
+        })
       : name
       ? res
           .status(404)

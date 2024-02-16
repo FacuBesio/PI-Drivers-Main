@@ -1,0 +1,84 @@
+/*** FORM ***/
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  /* justify-content: center;  */
+  align-items: center;
+  margin-top: 25px;
+  padding: 25px;
+  background-color: #333;
+  /* Color de fondo del nav */
+  border-radius: 5px;
+  width: 50%;
+}
+
+/*** IMG ***/
+.formImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formImg img {
+  width: 75%;
+  border-radius: 30%;
+  /* Esto hace que los bordes sean redondeados y, por lo tanto, crea un círculo */
+  overflow: hidden;
+}
+
+/*** INPUTS ***/
+.formInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 16px;
+  font-weight: bolder;
+  width: 100%;
+  align-items: center;
+}
+
+.formInputs label {
+  width: 64%;
+  text-align: start;
+}
+
+.formInputs input {
+  width: 62%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.5ms ease;
+  font-size: 16px;
+}
+
+.formInputs span {
+  color: rgb(187, 112, 112);
+  font-weight: bold;
+  width: 64%;
+  text-align: start;
+}
+
+/*** BUTTONS ***/
+.formButton button {
+  padding: 15px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 6em;
+  font-size: 16px;
+  font-weight: bolder;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
+}
+
+.formButton button:hover {
+  background-color: #309e3d;
+  transition: all ease 0.2s;
+  transform: scale(1.05);
+}
+
+.formButton button:not(:hover){
+  transition: all ease-in-out 0.2s;
+}

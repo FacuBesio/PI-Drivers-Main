@@ -7,22 +7,24 @@ module.exports = (dataBase) => {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4 // Para utilizar uuid_generate_v4() de PostgreSQL
+        defaultValue: DataTypes.UUIDV4, // Para utilizar uuid_generate_v4() de PostgreSQL
       },
       nombre: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: "nombre_apellido_constraint",
       },
       apellido: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: "nombre_apellido_constraint",
       },
       descripcion: {
         type: DataTypes.TEXT,
+        allowNull: false,
       },
       imagen: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       nacionalidad: {
         type: DataTypes.STRING,

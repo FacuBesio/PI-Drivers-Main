@@ -11,7 +11,6 @@ const findDriverById = async (id) => {
       },
     },
   });
-  // if (!driver) throw Error("Personaje no existe");
   return driver;
 };
 module.exports = findDriverById;

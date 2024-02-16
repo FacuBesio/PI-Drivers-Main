@@ -1,7 +1,7 @@
 const formatted_API_Driver = (driverApi) => {
   let formattedDriver;
   if (driverApi) {
-    let { name, description, image, nationality, dob, teams } = driverApi;
+    let { id, name, description, image, nationality, dob, teams } = driverApi;
     const { forename, surname } = name;
     const nombre = forename;
     const apellido = surname;
@@ -13,6 +13,7 @@ const formatted_API_Driver = (driverApi) => {
     teams = teams.split(",");
 
     formattedDriver = {
+      id,
       nombre,
       apellido,
       descripcion,
