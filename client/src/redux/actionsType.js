@@ -11,3 +11,8 @@ export const FILTER_FAV = "FILTER_FAV";
 export const ORDER_FAV = "ORDER_FAV";
 export const REMOVE_FAV = "REMOVE_FAV";
 
+//? PAGES
+export const BACK_PAGE = "BACK_PAGE";
+export const NEXT_PAGE = "NEXT_PAGE";
+export const SET_PAGE = "SET_PAGE";
+

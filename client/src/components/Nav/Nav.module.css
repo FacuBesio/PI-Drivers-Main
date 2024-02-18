@@ -1,0 +1,56 @@
+/*** NAV ***/
+nav {
+  background-color: #333;
+  margin-top: 2em;
+  /* Color de fondo del nav */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  width: 73%;
+}
+
+nav button {
+  padding: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
+}
+
+nav button:hover {
+  background-color: #2b98c0;
+  transition: all ease 0.2s;
+  scale: 1.05;
+}
+
+nav button:not(:hover){
+  transition: all ease-in-out 0.2s;
+}
+
+/*** MENU ***/
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.menu button:focus {
+  background-color: #2b98c0;
+  transform: scale(1.05);
+}
+
+/*** LOG OUT ***/
+.logOut{
+  margin: 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+

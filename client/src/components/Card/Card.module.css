@@ -1,0 +1,134 @@
+/*** CARD ***/
+.card {
+  background-color: #444;
+  width: 250px;
+  gap: 1em;
+  padding: 30px 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 10px 0px #000;
+}
+
+.card:hover{
+  scale: 1.1;
+  transition: all ease-in-out 0.3s;
+}
+
+.card:not(:hover){
+    transition: all ease-in-out 0.3s;
+}
+
+/*** CLOSEBUTTON ***/
+.closeButton button {
+  padding: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
+}
+
+.closeButton button:hover {
+  background-color: #2b98c0;
+  transition: all ease 0.2s;
+  scale: 1.05;
+}
+
+.closeButton button:not(:hover){
+  transition: all ease-in-out 0.2s;
+}
+
+/*** TEXTCARD ***/
+.textCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom: 10px; */
+  /* letter-spacing: 10px; */
+  /* line-height: 2.5em; */
+  font-family: "Indie Flower", cursive;
+  height: 100%;
+}
+
+.textCard a {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
+
+.textCard a:hover {
+  color: #e74c3c;
+  transition: all ease 0.2s;
+  scale: 1.08;
+}
+
+.textCard a:not(:hover){
+  transition: all ease-in-out 0.2s;
+}
+
+.textCard h2 {
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+}
+
+/*** IMG ***/
+.cardImg {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.cardImg img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10%;
+  box-shadow: 2px 5px 27px -3px rgba(0, 0, 0, 0.75);
+}
+
+.imgIcons {
+  position: absolute;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.favoritesButton {
+  padding: 5px;
+  background-color: transparent;
+  color: #fff;
+  border: transparent;
+  cursor: pointer;
+  font-size: 30px;
+  box-shadow: none;
+}
+
+.favoritesButton:hover {
+  background-color: transparent;
+  transform: scale(1.1);
+  transition: background-color 0.3s ease;
+}
+
+
+.favoritesButton:not(:hover){
+  transition: all ease-in-out 0.2s;
+}
+
+
+
+.cardImg h2 {
+  padding: 5px 8px;
+  background-color: transparent;
+  /* color: #e74c3c; */
+  color: #fff;
+  font-size: 30px;
+  margin: 0;
+}

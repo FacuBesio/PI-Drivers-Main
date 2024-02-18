@@ -1,0 +1,13 @@
+/*** LOG OUT ***/
+.logOut{
+    margin: 0;
+    width: 13%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  
+  .logOut h3{
+    margin: 0;
+    text-align: center;
+  }

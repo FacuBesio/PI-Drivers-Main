@@ -1,0 +1,46 @@
+/*** CARDS CONTAINER ***/
+.cardsContainer {
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+}
+
+.cardsContainer h1 {
+  padding: 15px;
+  text-align: center;
+  background-color: #444;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px #000;
+}
+
+/*** CARDS ***/
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding-top: 15px;
+}
+
+button {
+  padding: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
+}
+
+button:hover {
+  background-color: #2b98c0;
+  transition: all ease 0.2s;
+  scale: 1.05;
+}
+
+button:not(:hover){
+  transition: all ease-in-out 0.2s;
+}
