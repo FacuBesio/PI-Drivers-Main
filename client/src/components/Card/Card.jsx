@@ -24,7 +24,7 @@ const Card = ({ driver }) => {
             <button className={style.favoritesButton}>🤍</button>
           )} */}
 
-          <h2>{driver.id}</h2>
+          {/* <h2>{driver.id}</h2> */}
         </div>
 
         {/* IMG */}

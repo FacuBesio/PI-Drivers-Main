@@ -1,27 +1,60 @@
-import axios from "axios";
 import {
+  CLEAN_DRIVERS,
   CLEAN_DRIVER_DETAIL,
+  CLEAN_ALL_DRIVERS,
   GET_ALL_DRIVERS,
   GET_DRIVER_DETAIL,
+  GET_DRIVERS_BY_QUERY_NAME,
   SEARCH_DRIVER,
 } from "./actionsType";
+import axios from "axios";
 const URL_API = "http://localhost:5000/api/drivers";
 const URL = "http://localhost:5000/drivers";
 
 //?CARDS
+//* CLEAN_DRIVERS
+export const cleanDrivers = () => {
+  return { type: CLEAN_DRIVERS };
+};
+
 //* CLEAN_DRIVER_DETAIL
-// export const cleanDetail = () => {
-//   return { type: CLEAN_DETAIL };
-// };
+export const cleanDriverDetail = () => {
+  return { type: CLEAN_DRIVER_DETAIL };
+};
+
+//* CLEAN_ALL_DRIVERS
+export const cleanAllDrivers = () => {
+  return { type: CLEAN_ALL_DRIVERS };
+};
 
 //* GET_ALL_DRIVERS
 export const getAllDrivers = (page) => {
   return async (dispatch) => {
+    const pageSize = 9;
     try {
       const { data } = await axios(
-        page ? `${URL_API}?page=${page}` : `${URL_API}`
+        page
+          ? `${URL}?page=${page}&pageSize=${pageSize}`
+          : `${URL}?pageSize=${pageSize}`
       );
       return dispatch({ type: GET_ALL_DRIVERS, payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+//* GET_DRIVERS_BY_QUERY_NAME
+export const getDriversByQueryName = (nameQuery, page) => {
+  return async (dispatch) => {
+    const pageSize = 9;
+    try {
+      const { data } = await axios(
+        page
+          ? `${URL}?name=${nameQuery}&page=${page}&pageSize=${pageSize}`
+          : `${URL}?name=${nameQuery}&pageSize=${pageSize}`
+      );
+      return dispatch({ type: GET_DRIVERS_BY_QUERY_NAME, payload: data });
     } catch (error) {
       console.log(error.message);
     }
@@ -44,22 +77,14 @@ export const getDriverDetail = (id) => {
 };
 
 //* SEARCH_DRIVER
-// export const onSearch = (id, characters) => {
-//   return async (dispatch) => {
-//     try {
-//       if (!id) return alert("Ingresa un Id");
-//       if (id > 826)
-//         return alert(
-//           `No existe un personaje con el Id: ${id}. Puedes elegir un personaje desde 1 al 826.`
-//         );
-//       if (characters.find((char) => char.id == id)) {
-//         return alert(`Ya existe un personaje con el Id: ${id}`);
-//       }
-//       const { data } = await axios.get(`${URL}${id}`);
-//       // console.log("test");
-//       return dispatch({ type: SEARCH_CHARACTER, payload: data });
-//     } catch (error) {
-//       console.log(`action Error: ${error.message}`);
-//     }
-//   };
-// };
+export const searchDriver = (id) => {
+  return async (dispatch) => {
+    try {
+      if (!id) return alert("Ingresa un Id");
+      const { data } = await axios.get(`${URL}/${id}`);
+      return dispatch({ type: SEARCH_DRIVER, payload: data });
+    } catch (error) {
+      console.log(`action Error: ${error.message}`);
+    }
+  };
+};

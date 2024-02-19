@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getDriverDetail } from "../../redux/actions_Drivers";
+import { getDriverDetail, cleanDriverDetail } from "../../redux/actions_Drivers";
 import { Link, useParams } from "react-router-dom";
 import style from "./Detail.module.css";
 
@@ -19,8 +19,8 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getDriverDetail(id));
-    // return () => dispatch(cleanDetail());
-  }, [id]);
+    return () => dispatch(cleanDriverDetail());
+  }, []);
 
   return (
     <div className={style.detail}>
@@ -30,10 +30,10 @@ const Detail = () => {
             <h1>{nombreCompleto.toUpperCase()}</h1>
           </div>
           <div className={style.detailText}>
-            <h2>Descripción: {driverDetail.descripcion}</h2>
-            <h2>Fecha Nacimiento: {driverDetail.fecha_Nacimiento}</h2>
-            <h2>Nacionalidad: {driverDetail.nacionalidad}</h2>
-            <h2>Teams: {teams}</h2>
+            <h2>. Nacionalidad: {driverDetail.nacionalidad}</h2>
+            <h2>. Teams: {teams}</h2>
+            <h2>. Fecha Nacimiento: {driverDetail.fecha_Nacimiento}</h2>
+            <h2>. Descripción: {driverDetail.descripcion}</h2>
           </div>
         </div>
         <div className={style.detailImg}>

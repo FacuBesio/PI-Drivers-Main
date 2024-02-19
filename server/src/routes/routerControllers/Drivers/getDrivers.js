@@ -26,7 +26,14 @@ const getDrivers = async (req, res) => {
           .catch((error) => {
             console.error(error);
           })
-      : null;
+      : await findApiDataQueryName()
+      .then((driversApi) => {
+        if (driversApi)
+          drivers = [...drivers, ...formatted_API_Drivers(driversApi)];
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
     //* CORRECION DE IMAGEN POR DEFAULT ({ imagen:"" })
     drivers = defaultImage(drivers);

@@ -1,35 +1,46 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { inputIsNumber, inputIsUUID } from "../../../utils/inputValidation";
 import style from "./SearchBar.module.css";
-import { useSelector, useDispatch } from "react-redux";
-// import { onSearch } from "../../../redux/actions";
 
-export default function SearchBar({ logout }) {
-  // const dispatch = useDispatch();
-  // const characters = useSelector((state) => state.characters);
-  // const [inputValue, setInputValue] = useState("");
+export default function SearchBar() {
+  const [inputValue, setInputValue] = useState("");
 
-  // const hadleChange = (event) => {
-  //   setInputValue(event.target.value);
-  // };
+  //* HANDLERS
+  const hadlerChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
-  // const hadleClick = () => {
-  //   dispatch(onSearch(inputValue, characters));
-  //   setInputValue("");
-  // };
+  const hadlerClick = () => {
+    if (!inputValue || inputValue === "")
+      return alert("Ingrese un valor de busqueda");
+    setInputValue("");
+  };
 
-  // return (
-  //   <div className={style.search_container}>
-  //     {/* SEARCH BAR */}
-  //     <input
-  //       type="search"
-  //       onChange={hadleChange}
-  //       value={inputValue}
-  //       placeholder="Ingrese un Id..."
-  //     />
-      
-  //     {/* SEARCH BUTTON */}
-  //     <button onClick={hadleClick}>Agregar</button>
-  //   </div>
-  // );
+  //* INPUT VALIDATION
+  let serchInput = "";
+  if (inputValue !== "" && inputValue !== null && inputValue !== undefined) {
+    (inputIsNumber(inputValue) || inputIsUUID(inputValue))
+      ? (serchInput = `/${inputValue}`)
+      : (serchInput = `?name=${inputValue}`);
+  }
+
+  // console.log(serchInput);
+
+  return (
+    <div className={style.search_container}>
+      {/* SEARCH BAR */}
+      <input
+        type="search"
+        onChange={hadlerChange}
+        value={inputValue}
+        placeholder="Ingrese un Id..."
+      />
+
+      {/* SEARCH BUTTON */}
+      <Link to={`/home${serchInput}`}>
+        <button onClick={hadlerClick}>Buscar</button>
+      </Link>
+    </div>
+  );
 }

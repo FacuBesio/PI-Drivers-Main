@@ -1,14 +1,24 @@
 import SearchBar from "./SearchBar/SearchBar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setPage } from "../../redux/actions_Pages";
 import style from "./Nav.module.css";
 
-export default function Nav({ logout, pathname }) {
+export default function Nav({ logout }) {
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
+  //* SET PAGE
+  const handlerSetPage = () => {
+    dispatch(setPage(1));
+  };
+
   return (
     <nav>
       {/* MENU */}
       <div className={style.menu}>
         <Link to="/home">
-          <button>Home</button>
+          <button onClick={handlerSetPage}>Home</button>
         </Link>
 
         <Link to="/favorites">
@@ -21,9 +31,7 @@ export default function Nav({ logout, pathname }) {
       </div>
 
       {/* SEARCH BAR */}
-      {pathname === "/home" && (
-        <SearchBar logout={logout} />
-      )}
+      {pathname.startsWith("/home") && <SearchBar logout={logout} />}
 
       {/* LOG OUT */}
       <div className={style.logOut}>
