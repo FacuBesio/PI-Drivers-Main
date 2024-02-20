@@ -76,6 +76,16 @@ export const getDriverDetail = (id) => {
   };
 };
 
+//* CREATE_DRIVER
+export const createDriver = async (driver) => {
+  try {
+    const { data } = await axios.post(`${URL}`, driver);
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 //* SEARCH_DRIVER
 export const searchDriver = (id) => {
   return async (dispatch) => {

@@ -14,7 +14,10 @@ const getDrivers = async (req, res) => {
     const driversDb = name
       ? await findAllDrivers(name)
       : await findAllDrivers();
-    if (driversDb.length > 0) drivers = [...formattedDrivers(driversDb)];
+    if (driversDb.length > 0) {
+      const driversDb_reverse = driversDb.reverse();
+      drivers = [...formattedDrivers(driversDb_reverse)];
+    }
 
     //* DRIVERS API QUERY NAME
     name
@@ -27,21 +30,20 @@ const getDrivers = async (req, res) => {
             console.error(error);
           })
       : await findApiDataQueryName()
-      .then((driversApi) => {
-        if (driversApi)
-          drivers = [...drivers, ...formatted_API_Drivers(driversApi)];
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+          .then((driversApi) => {
+            if (driversApi)
+              drivers = [...drivers, ...formatted_API_Drivers(driversApi)];
+          })
+          .catch((error) => {
+            console.error(error);
+          });
 
     //* CORRECION DE IMAGEN POR DEFAULT ({ imagen:"" })
     drivers = defaultImage(drivers);
- 
+
     //* PAGINACION
     const totalResults = drivers.length;
     const paginatedDrivers = pagination(drivers, page, pageSize);
-  
 
     return paginatedDrivers.length > 0
       ? res.status(200).json({

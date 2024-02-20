@@ -6,6 +6,7 @@ import Cards from "./components/Cards/Cards";
 import Home from "./components/views/Home";
 import Nav from "./components/Nav/Nav";
 import Detail from "./components/Detail/Detail";
+import CreateForm from "./components/Form/Form";
 
 function logout() {
   setUserData({
@@ -32,6 +33,7 @@ function App() {
         {/* <Route path="/home" element={<Cards />} /> */}
         <Route path="/home/*" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/create" element={<CreateForm />} />
         </Routes>
     </div>
   );

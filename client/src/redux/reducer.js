@@ -7,11 +7,13 @@ import {
   GET_DRIVERS_BY_QUERY_NAME,
   SEARCH_DRIVER,
 } from "./actionsType";
-import { ADD_FAV, FILTER_FAV, ORDER_FAV, REMOVE_FAV } from "./actionsType";
+import { CLEAN_ALL_TEAMS, GET_ALL_TEAMS } from "./actionsType";
 import { BACK_PAGE, NEXT_PAGE, SET_PAGE, SET_TOTAL_PAGES } from "./actionsType";
+import { ADD_FAV, FILTER_FAV, ORDER_FAV, REMOVE_FAV } from "./actionsType";
 
 const inicialState = {
   allDrivers: [],
+  allTeams: [],
   driverDetail: {},
   drivers: [],
   myFavorites: [],
@@ -21,6 +23,7 @@ const inicialState = {
 
 const reducer = (state = inicialState, action) => {
   switch (action.type) {
+    //? DRIVERS
     case CLEAN_DRIVERS:
       return {
         ...state,
@@ -66,6 +69,14 @@ const reducer = (state = inicialState, action) => {
         drivers: [...action.payload],
       };
 
+    //? TEAMS
+    case GET_ALL_TEAMS:
+      return {
+        ...state,
+        allTeams: [...action.payload],
+      };
+
+    //? PAGES
     case BACK_PAGE:
       return {
         ...state,
@@ -84,7 +95,7 @@ const reducer = (state = inicialState, action) => {
         page: action.payload,
       };
 
-      case SET_TOTAL_PAGES:
+    case SET_TOTAL_PAGES:
       return {
         ...state,
         totalPages: action.payload,

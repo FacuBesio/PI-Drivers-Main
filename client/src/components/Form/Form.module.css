@@ -13,6 +13,16 @@ form {
   width: 50%;
 }
 
+form select {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 5%;
+  font-family: "Tektur", sans-serif;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
+  width: 65%;
+}
+
 /*** IMG ***/
 .formImg {
   display: flex;

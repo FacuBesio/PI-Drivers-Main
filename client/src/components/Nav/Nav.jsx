@@ -25,6 +25,10 @@ export default function Nav({ logout }) {
           <button>Favorites</button>
         </Link>
 
+        <Link to="/create">
+          <button>Create</button>
+        </Link>
+
         <Link to="/about">
           <button>About</button>
         </Link>

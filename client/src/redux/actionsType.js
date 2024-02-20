@@ -8,6 +8,11 @@ export const GET_DRIVER_DETAIL = "GET_DRIVER_DETAIL";
 export const GET_DRIVERS_BY_QUERY_NAME = "GET_DRIVERS_BY_QUERY_NAME";
 export const SEARCH_DRIVER = "SEARCH_DRIVER";
 
+//? TEAMS
+export const CLEAN_ALL_TEAMS = "CLEAN_ALL_TEAMS";
+export const GET_ALL_TEAMS = "GET_ALL_TEAMS";
+
+
 //? FAVOTIRES
 export const ADD_FAV = "ADD_FAV";
 export const FILTER_FAV = "FILTER_FAV";
