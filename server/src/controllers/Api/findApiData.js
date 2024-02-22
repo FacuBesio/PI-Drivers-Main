@@ -1,8 +1,8 @@
-const dBReader = require("../../utils/dBReader");
+const jsonReader = require("../../utils/api/jsonReader");
 
 const findApiData = async () => {
   try {
-    const jsonData = await dBReader();
+    const jsonData = await jsonReader();
     return jsonData.drivers;
   } catch (error) {
     console.error("Error al leer el archivo: ", error);

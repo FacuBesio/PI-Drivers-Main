@@ -1,7 +1,7 @@
 const findDriverById = require("../../../controllers/Drivers/findDriverById");
 const findApiDataById = require("../../../controllers/Api/findApiDataById");
-const formattedDriver = require("../../../utils/formattedDriver");
-const formatted_API_Driver = require("../../../utils/formatted_API_Driver");
+const formattedDriver = require("../../../utils/formatted/formattedDriver");
+const formatted_API_Driver = require("../../../utils/formatted/formatted_API_Driver");
 const { validate } = require("uuid");
 
 const getDriverById = async (req, res) => {

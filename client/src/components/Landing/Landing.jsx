@@ -3,7 +3,7 @@ import Form from "../Form/Form";
 const Landing = () => {
   return (
     <>
-      <Form />
+    <h1> TEST LANDING "/"</h1>
     </>
   );
 };

@@ -1,6 +1,6 @@
 const findApiData = require("../../../controllers/Api/findApiData");
-const formattedDrivers = require("../../../utils/formatted_API_Drivers");
-const pagination = require("../../../utils/pagination");
+const formattedDrivers = require("../../../utils/formatted/formatted_API_Drivers");
+const pagination = require("../../../utils/pagination/pagination");
 
 const getApiData = (req, res) => {
   findApiData()

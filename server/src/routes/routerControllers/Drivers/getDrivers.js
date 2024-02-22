@@ -1,13 +1,15 @@
 const findAllDrivers = require("../../../controllers/Drivers/findAllDrivers");
 const findApiDataQueryName = require("../../../controllers/Api/findApiDataQueryName");
-const formattedDrivers = require("../../../utils/formattedDrivers");
-const formatted_API_Drivers = require("../../../utils/formatted_API_Drivers");
-const defaultImage = require("../../../utils/defaultImage");
-const pagination = require("../../../utils/pagination");
+const formattedDrivers = require("../../../utils/formatted/formattedDrivers");
+const formatted_API_Drivers = require("../../../utils/formatted/formatted_API_Drivers");
+const defaultImage = require("../../../utils/image/defaultImage");
+const pagination = require("../../../utils/pagination/pagination");
+const orderByName = require("../../../utils/order/orderByName");
+
 
 const getDrivers = async (req, res) => {
   try {
-    const { name, page = 1, pageSize = 15 } = req.query;
+    const { name, page = 1, pageSize = 15, order = "" } = req.query;
     let drivers = [];
 
     //* DRIVERS DB
@@ -40,6 +42,10 @@ const getDrivers = async (req, res) => {
 
     //* CORRECION DE IMAGEN POR DEFAULT ({ imagen:"" })
     drivers = defaultImage(drivers);
+
+    //* ORDER:
+    order !== "" && orderByName(drivers, order);
+
 
     //* PAGINACION
     const totalResults = drivers.length;

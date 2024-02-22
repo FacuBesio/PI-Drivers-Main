@@ -11,9 +11,10 @@ const Detail = () => {
   const nombreCompleto = driverDetail.nombre + " " + driverDetail.apellido;
   let teams = "";
   if (driverDetail.teams) {
-    teams = driverDetail.teams[0];
     driverDetail.teams.forEach((team) => {
-      teams = teams + ", " + team;
+      teams === ""
+        ? (teams = team + ", ")
+        : (teams = teams + ", " + team);
     });
   }
 
@@ -30,10 +31,10 @@ const Detail = () => {
             <h1>{nombreCompleto.toUpperCase()}</h1>
           </div>
           <div className={style.detailText}>
-            <h2>. Nacionalidad: {driverDetail.nacionalidad}</h2>
-            <h2>. Teams: {teams}</h2>
-            <h2>. Fecha Nacimiento: {driverDetail.fecha_Nacimiento}</h2>
-            <h2>. Descripción: {driverDetail.descripcion}</h2>
+            <h2>• Nacionalidad: {driverDetail.nacionalidad}.</h2>
+            <h2>• Teams: {teams}.</h2>
+            <h2>• Fecha Nacimiento: {driverDetail.fecha_Nacimiento}.</h2>
+            <h2>• Descripción: {driverDetail.descripcion}.</h2>
           </div>
         </div>
         <div className={style.detailImg}>

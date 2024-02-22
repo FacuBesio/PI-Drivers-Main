@@ -28,14 +28,14 @@ export const cleanAllDrivers = () => {
 };
 
 //* GET_ALL_DRIVERS
-export const getAllDrivers = (page) => {
+export const getAllDrivers = (page, order) => {
   return async (dispatch) => {
     const pageSize = 9;
     try {
       const { data } = await axios(
         page
-          ? `${URL}?page=${page}&pageSize=${pageSize}`
-          : `${URL}?pageSize=${pageSize}`
+          ? `${URL}?page=${page}&pageSize=${pageSize}&order=${order}`
+          : `${URL}?pageSize=${pageSize}&order=${order}`
       );
       return dispatch({ type: GET_ALL_DRIVERS, payload: data });
     } catch (error) {
@@ -45,14 +45,14 @@ export const getAllDrivers = (page) => {
 };
 
 //* GET_DRIVERS_BY_QUERY_NAME
-export const getDriversByQueryName = (nameQuery, page) => {
+export const getDriversByQueryName = (nameQuery, page, order) => {
   return async (dispatch) => {
     const pageSize = 9;
     try {
       const { data } = await axios(
         page
-          ? `${URL}?name=${nameQuery}&page=${page}&pageSize=${pageSize}`
-          : `${URL}?name=${nameQuery}&pageSize=${pageSize}`
+          ? `${URL}?name=${nameQuery}&page=${page}&pageSize=${pageSize}&order=${order}`
+          : `${URL}?name=${nameQuery}&pageSize=${pageSize}&order=${order}`
       );
       return dispatch({ type: GET_DRIVERS_BY_QUERY_NAME, payload: data });
     } catch (error) {

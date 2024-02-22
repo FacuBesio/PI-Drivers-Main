@@ -1,5 +1,5 @@
 const findApiData = require("../../../controllers/Api/findApiData");
-const formattedDrivers = require("../../../utils/formatted_API_Drivers");
+
 
 const getApiTeams = (req, res) => {
   findApiData()
@@ -16,7 +16,7 @@ const getApiTeams = (req, res) => {
       });
 
       const result = Array.from(resultSet).sort();
-      const result2 = result.filter((team) => team.includes("-"))
+
 
       console.log("Teams: ", result.length);
       return result.length > 0

@@ -4,10 +4,10 @@ const fs = require("fs");
 // Convierte fs.readFile a una versión compatible con promesas
 const readFileAsync = util.promisify(fs.readFile);
 
-const dBReader = async () => {
+const jsonReader = async () => {
   try {
     // Lee el archivo JSON como una promesa
-    const data = await readFileAsync(__dirname + "../../../api/db.json", "utf8");
+    const data = await readFileAsync(__dirname + "../../../../api/db.json", "utf8");
     const jsonData = JSON.parse(data);
     return jsonData;
   } catch (error) {
@@ -16,4 +16,4 @@ const dBReader = async () => {
   }
 };
 
-module.exports = dBReader;
+module.exports = jsonReader;

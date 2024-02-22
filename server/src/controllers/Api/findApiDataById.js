@@ -1,9 +1,9 @@
-const dBReader = require("../../utils/dBReader");
+const jsonReader = require("../../utils/api/jsonReader");
 
 
 const findApiDataById = async (id) => {
   try {
-    const jsonData = await dBReader();
+    const jsonData = await jsonReader();
     const driver = jsonData.drivers.find((data) => data.id === id);
     return driver;
   } catch (error) {

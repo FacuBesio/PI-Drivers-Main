@@ -1,4 +1,5 @@
 import SearchBar from "./SearchBar/SearchBar";
+import FilterBar from "./FilterBar/FilterBar";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPage } from "../../redux/actions_Pages";
@@ -29,16 +30,21 @@ export default function Nav({ logout }) {
           <button>Create</button>
         </Link>
 
-        <Link to="/about">
-          <button>About</button>
-        </Link>
+        
       </div>
 
       {/* SEARCH BAR */}
       {pathname.startsWith("/home") && <SearchBar logout={logout} />}
 
+      {/* FILTER BAR */}
+      {/* {pathname.startsWith("/home") && <FilterBar logout={logout} />} */}
+
       {/* LOG OUT */}
       <div className={style.logOut}>
+      <Link to="/about">
+          <button>About</button>
+        </Link>
+        
         <Link to="/">
           <button onClick={logout}>LogOut</button>
         </Link>
