@@ -1,5 +1,5 @@
 const findApiData = require("../../../controllers/Api/findApiData");
-const formattedDrivers = require("../../../utils/formatted/formatted_API_Drivers");
+const formatted_API_Drivers = require("../../../utils/formatted/formatted_API_Drivers");
 const pagination = require("../../../utils/pagination/pagination");
 
 const getApiData = (req, res) => {
@@ -12,7 +12,7 @@ const getApiData = (req, res) => {
       const paginated_API_Drivers = pagination(drivers, page, pageSize);
 
       return drivers
-        ? res.status(200).json(formattedDrivers(paginated_API_Drivers))
+        ? res.status(200).json(formatted_API_Drivers(paginated_API_Drivers))
         : res.status(404).send("Not found");
     })
     .catch((error) => {

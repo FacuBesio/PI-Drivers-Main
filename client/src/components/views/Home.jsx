@@ -3,13 +3,12 @@ import Cards from "../Cards/Cards";
 import CardsByParams from "../Cards/CardsByParams";
 
 const Home = () => {
-
   return (
     <>
-     <Routes>
-     <Route path="/" element={<Cards />} />
-     <Route path="/:id" element={<CardsByParams />} />
-     </Routes>
+      <Routes>
+        <Route path="/" element={<Cards />} />
+        <Route path="/:id" element={<CardsByParams />} />
+      </Routes>
     </>
   );
 };

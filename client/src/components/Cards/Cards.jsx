@@ -35,20 +35,34 @@ const Cards = () => {
 
   const { orderNombre, orderNacimiento, filterTeams, filterDrivers } =
     orders_filters;
-
-    const order = orderNombre;
-
-  // orderNombre !== "" &&
-  //   orderNombre !== "clean" &&
-  //   dispatch(orderByName(orderNombre, page));
-  // orderNombre === "clean" && console.log("test clean");
+  const orders = { orderNombre, orderNacimiento };
+  const filters = { filterTeams, filterDrivers };
 
   //? HANDLERS
   const handlerChange = (event) => {
     const property = event.target.name;
     const value = event.target.value;
 
-    setOrders_filters({ ...orders_filters, [property]: value });
+    if (property === "orderNombre") {
+      return setOrders_filters({
+        ...orders_filters,
+        [property]: value,
+        orderNacimiento: "",
+      });
+    }
+
+    if (property === "orderNacimiento") {
+      return setOrders_filters({
+        ...orders_filters,
+        [property]: value,
+        orderNombre: "",
+      });
+    }
+
+    return setOrders_filters({
+      ...orders_filters,
+      [property]: value,
+    });
   };
 
   //? PAGINATED
@@ -71,10 +85,10 @@ const Cards = () => {
   useEffect(() => {
     dispatch(getAllTeams());
     nameQuery
-      ? dispatch(getDriversByQueryName(nameQuery, page, order))
-      : dispatch(getAllDrivers(page, order));
+      ? dispatch(getDriversByQueryName(nameQuery, page, orders, filters))
+      : dispatch(getAllDrivers(page, orders, filters));
     return () => dispatch(cleanAllDrivers());
-  }, [nameQuery, page, order]);
+  }, [nameQuery, page, orderNombre, orderNacimiento, filterDrivers]);
 
   return (
     <div className={style.cardsContainer}>
@@ -84,9 +98,9 @@ const Cards = () => {
           id="orderNombre"
           name="orderNombre"
           onChange={handlerChange}
-          defaultValue="orderNombre_default"
+          value={orderNombre}
         >
-          <option value="orderNombre_default" disabled="disabled">
+          <option value="" disabled="disabled">
             Ordenar Nombre
           </option>
           <option value="ascendente">Ascendente</option>
@@ -99,9 +113,9 @@ const Cards = () => {
           id="orderNacimiento"
           name="orderNacimiento"
           onChange={handlerChange}
-          defaultValue="orderNacimiento_default"
+          value={orderNacimiento}
         >
-          <option value="orderNacimiento_default" disabled="disabled">
+          <option value="" disabled="disabled">
             Ordenar Edad
           </option>
           <option value="ascendente">Ascendente</option>
@@ -110,8 +124,14 @@ const Cards = () => {
         </select>
 
         {/* FILTER TEAMS */}
-        <select id="filterTeams" name="filterTeams" onChange={handlerChange}>
+        <select
+          id="filterTeams"
+          name="filterTeams"
+          onChange={handlerChange}
+          value={filterTeams}
+        >
           <option value="">All Teams</option>
+          <option value="">Clean...</option>
           {allTeams?.map((team) => {
             return (
               <option key={team.id} value={team.id}>
@@ -126,10 +146,12 @@ const Cards = () => {
           id="filterDrivers"
           name="filterDrivers"
           onChange={handlerChange}
+          value={filterDrivers}
         >
           <option value="">All Drivers</option>
           <option value="api_drivers">API Drivers</option>
           <option value="db_drivers">DataBase Drivers</option>
+          <option value="">Clean...</option>
         </select>
       </div>
 

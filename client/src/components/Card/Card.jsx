@@ -36,6 +36,7 @@ const Card = ({ driver }) => {
       <div className={style.textCard}>
         <Link to={`/detail/${driver.id}`}>
           <h2>. {nombreCompleto} .</h2>
+          <h2>{driver.fecha_Nacimiento}</h2>
         </Link>
 
         {/* <h2>{driver.teams}</h2> */}
@@ -48,6 +49,7 @@ const Card = ({ driver }) => {
           {/* <button className={style.favoritesButton}>🤍</button> */}
 
           <h2>{driver.nacionalidad}</h2>
+          {/* <h2>{driver.fecha_Nacimiento}</h2> */}
           <h3>Teams: {teams}</h3>
         </div>
 

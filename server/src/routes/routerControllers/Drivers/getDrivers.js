@@ -5,11 +5,19 @@ const formatted_API_Drivers = require("../../../utils/formatted/formatted_API_Dr
 const defaultImage = require("../../../utils/image/defaultImage");
 const pagination = require("../../../utils/pagination/pagination");
 const orderByName = require("../../../utils/order/orderByName");
-
+const orderByDateOfBirth = require("../../../utils/order/orderByDateOfBirth");
+const filterDriversOrigin = require("../../../utils/filter/filterDriversOrigin");
 
 const getDrivers = async (req, res) => {
   try {
-    const { name, page = 1, pageSize = 15, order = "" } = req.query;
+    const {
+      name,
+      page = 1,
+      pageSize = 15,
+      orderNombre = "",
+      orderNacimiento = "",
+      filterDrivers = "",
+    } = req.query;
     let drivers = [];
 
     //* DRIVERS DB
@@ -43,9 +51,15 @@ const getDrivers = async (req, res) => {
     //* CORRECION DE IMAGEN POR DEFAULT ({ imagen:"" })
     drivers = defaultImage(drivers);
 
-    //* ORDER:
-    order !== "" && orderByName(drivers, order);
+    //* FILTER:
+    // console.log("***************filterDrivers: ", filterDrivers);
+    (filterDrivers !== "") &&  
+    (drivers = filterDriversOrigin(drivers, filterDrivers))
+    // orderNacimiento !== "" && orderByDateOfBirth(drivers, orderNacimiento);
 
+    //* ORDER:
+    orderNombre !== "" && orderByName(drivers, orderNombre);
+    orderNacimiento !== "" && orderByDateOfBirth(drivers, orderNacimiento);
 
     //* PAGINACION
     const totalResults = drivers.length;

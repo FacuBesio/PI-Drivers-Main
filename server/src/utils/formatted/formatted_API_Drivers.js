@@ -8,8 +8,9 @@ const formatted_API_Drivers = (driversApi) => {
     const { url } = image;
     const imagen = url;
     const nacionalidad = nationality;
-    const fecha_Nacimiento = dob;
-    teams = teams ? teams.split(",") : []; 
+    const fechaSeparadaReverse = dob.split("-").reverse();
+    const fecha_Nacimiento = fechaSeparadaReverse.join("-");
+    teams = teams ? teams.split(",") : [];
     return {
       id,
       nombre,

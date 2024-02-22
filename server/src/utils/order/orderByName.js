@@ -1,5 +1,3 @@
-const imagenPorDefecto = "imagenPorDefecto.jpg";
-
 const orderByName = (drivers, order) =>{
     if (drivers.length > 0) {
         drivers.sort(function (a, b) {
