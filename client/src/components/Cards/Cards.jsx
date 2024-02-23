@@ -88,7 +88,7 @@ const Cards = () => {
       ? dispatch(getDriversByQueryName(nameQuery, page, orders, filters))
       : dispatch(getAllDrivers(page, orders, filters));
     return () => dispatch(cleanAllDrivers());
-  }, [nameQuery, page, orderNombre, orderNacimiento, filterDrivers]);
+  }, [nameQuery, page, orderNombre, orderNacimiento, filterTeams, filterDrivers]);
 
   return (
     <div className={style.cardsContainer}>
@@ -134,7 +134,7 @@ const Cards = () => {
           <option value="">Clean...</option>
           {allTeams?.map((team) => {
             return (
-              <option key={team.id} value={team.id}>
+              <option key={team.id} value={team.nombre}>
                 {team.nombre}
               </option>
             );

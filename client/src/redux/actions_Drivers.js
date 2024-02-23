@@ -31,14 +31,14 @@ export const cleanAllDrivers = () => {
 export const getAllDrivers = (page, orders, filters) => {
   const { orderNombre, orderNacimiento } = orders;
   const { filterTeams, filterDrivers } = filters;
-  // console.log("action: ", filterDrivers);
+  // console.log("action: ", filterTeams);
   return async (dispatch) => {
     const pageSize = 9;
     try {
       const { data } = await axios(
         page
-          ? `${URL}?page=${page}&pageSize=${pageSize}&orderNombre=${orderNombre}&orderNacimiento=${orderNacimiento}&filterDrivers=${filterDrivers}`
-          : `${URL}?pageSize=${pageSize}&orderNombre=${orderNombre}&orderNacimiento=${orderNacimiento}&filterDrivers=${filterDrivers}`
+          ? `${URL}?page=${page}&pageSize=${pageSize}&orderNombre=${orderNombre}&orderNacimiento=${orderNacimiento}&filterDrivers=${filterDrivers}&filterTeams=${filterTeams}`
+          : `${URL}?pageSize=${pageSize}&orderNombre=${orderNombre}&orderNacimiento=${orderNacimiento}&filterDrivers=${filterDrivers}&filterTeams=${filterTeams}`
       );
       return dispatch({ type: GET_ALL_DRIVERS, payload: data });
     } catch (error) {
@@ -56,8 +56,8 @@ export const getDriversByQueryName = (nameQuery, page, orders, filters) => {
     try {
       const { data } = await axios(
         page
-          ? `${URL}?name=${nameQuery}&page=${page}&pageSize=${pageSize}&orderNombre=${orderNombre}&orderNacimiento=${orderNacimiento}&filterDrivers=${filterDrivers}`
-          : `${URL}?name=${nameQuery}&pageSize=${pageSize}&orderNombre=${orderNombre}&orderNacimiento=${orderNacimiento}&filterDrivers=${filterDrivers}`
+          ? `${URL}?name=${nameQuery}&page=${page}&pageSize=${pageSize}&orderNombre=${orderNombre}&orderNacimiento=${orderNacimiento}&filterDrivers=${filterDrivers}&filterTeams=${filterTeams}`
+          : `${URL}?name=${nameQuery}&pageSize=${pageSize}&orderNombre=${orderNombre}&orderNacimiento=${orderNacimiento}&filterDrivers=${filterDrivers}&filterTeams=${filterTeams}`
       );
       return dispatch({ type: GET_DRIVERS_BY_QUERY_NAME, payload: data });
     } catch (error) {

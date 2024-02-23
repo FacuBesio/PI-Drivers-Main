@@ -7,6 +7,7 @@ const pagination = require("../../../utils/pagination/pagination");
 const orderByName = require("../../../utils/order/orderByName");
 const orderByDateOfBirth = require("../../../utils/order/orderByDateOfBirth");
 const filterDriversOrigin = require("../../../utils/filter/filterDriversOrigin");
+const filterTeams_method = require("../../../utils/filter/filterTeams_method");
 
 const getDrivers = async (req, res) => {
   try {
@@ -17,6 +18,7 @@ const getDrivers = async (req, res) => {
       orderNombre = "",
       orderNacimiento = "",
       filterDrivers = "",
+      filterTeams = "",
     } = req.query;
     let drivers = [];
 
@@ -52,10 +54,10 @@ const getDrivers = async (req, res) => {
     drivers = defaultImage(drivers);
 
     //* FILTER:
-    // console.log("***************filterDrivers: ", filterDrivers);
-    (filterDrivers !== "") &&  
-    (drivers = filterDriversOrigin(drivers, filterDrivers))
-    // orderNacimiento !== "" && orderByDateOfBirth(drivers, orderNacimiento);
+    filterDrivers !== "" &&
+      (drivers = filterDriversOrigin(drivers, filterDrivers));
+
+    filterTeams !== "" && (drivers = filterTeams_method(drivers, filterTeams));
 
     //* ORDER:
     orderNombre !== "" && orderByName(drivers, orderNombre);
