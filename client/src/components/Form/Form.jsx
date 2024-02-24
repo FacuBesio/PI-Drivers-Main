@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTeams } from "../../redux/actions_Teams";
 import { createDriver } from "../../redux/actions_Drivers";
+import { createInputValidator } from "../../utils/formCreate/createInputValidator";
 import style from "./Form.module.css";
 
 const CreateForm = () => {
@@ -14,6 +15,16 @@ const CreateForm = () => {
 
   //? REACT STATES
   const [driver, setDriver] = useState({
+    nombre: null,
+    apellido: null,
+    descripcion: null,
+    imagen: null,
+    nacionalidad: null,
+    fecha_Nacimiento: null,
+    teams: null,
+  });
+
+  const [errors, setErrors] = useState({
     nombre: "",
     apellido: "",
     descripcion: "",
@@ -23,18 +34,14 @@ const CreateForm = () => {
     teams: [],
   });
 
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
-
-   //? HANDLERS
+  //? HANDLERS
   const handlerChange = (event) => {
     const property = event.target.name;
-    const value = event.target.value;
+    let value = event.target.value;
 
     setDriver({ ...driver, [property]: value });
-    // validate({ ...driver, [property]: value }, errors, setErrors);
+    setErrors({ ...driver, [property]: value });
+    createInputValidator({ ...driver, [property]: value }, errors, setErrors);
   };
 
   const submitHandler = (event) => {
