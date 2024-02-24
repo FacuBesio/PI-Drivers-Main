@@ -18,16 +18,28 @@ function logout() {
 
 function App() {
   const [access, setAccess] = useState(false);
+  const { pathname } = useLocation();
   const [page, setPage] = useState({ page: "" });
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
-  const { pathname } = useLocation();
+  // CSS Body Dinamico:
+  useEffect(() => {
+    // Verifica la ruta actual y aplica estilos al cuerpo en consecuencia
+    if (pathname === "/" || pathname === "/about") {
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backdropFilter = "blur(8px)"; // Estilo para la ruta '/'
+    } else {
+      document.body.style.backdropFilter = "blur(0px)"; // Estilo para la ruta '/home'
+    }
+  }, [pathname]);
+
+  
   return (
     <div className="App">
-      <Nav logout={logout} pathname={pathname} />
+      {pathname !== "/" && <Nav logout={logout} pathname={pathname} />}
       <Routes>
         <Route path="/" element={<Landing />} />
         {/* <Route path="/home" element={<Cards />} /> */}

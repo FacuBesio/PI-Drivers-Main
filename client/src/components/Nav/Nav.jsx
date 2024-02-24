@@ -15,40 +15,44 @@ export default function Nav({ logout }) {
   };
 
   return (
-    <nav>
-      {/* MENU */}
-      <div className={style.menu}>
-        <Link to="/home">
-          <button onClick={handlerSetPage}>Home</button>
-        </Link>
+    <div className={style.navContainer}>
+      <nav>
+        {/* MENU */}
+        <div className={style.menu}>
+          <Link to="/home">
+            <button onClick={handlerSetPage}>Home</button>
+          </Link>
 
-        <Link to="/favorites">
-          <button>Favorites</button>
-        </Link>
+          {/* <Link to="/favorites">
+            <button>Favorites</button>
+          </Link> */}
 
-        <Link to="/create">
-          <button>Create</button>
-        </Link>
+          <Link to="/create">
+            <button>Create</button>
+          </Link>
+        </div>
 
-        
-      </div>
+        {/* SEARCH BAR */}
+        {pathname.startsWith("/home") && <SearchBar logout={logout} />}
 
-      {/* SEARCH BAR */}
-      {pathname.startsWith("/home") && <SearchBar logout={logout} />}
+        {/* FILTER BAR */}
+        {/* {pathname.startsWith("/home") && <FilterBar logout={logout} />} */}
 
-      {/* FILTER BAR */}
-      {/* {pathname.startsWith("/home") && <FilterBar logout={logout} />} */}
+        {/* LOG OUT */}
+        <div className={style.logOut}>
+          {/* <Link to="/favorites">
+            <button>Favorites</button>
+          </Link> */}
 
-      {/* LOG OUT */}
-      <div className={style.logOut}>
-      <Link to="/about">
-          <button>About</button>
-        </Link>
-        
-        <Link to="/">
-          <button onClick={logout}>LogOut</button>
-        </Link>
-      </div>
-    </nav>
+          <Link to="/about">
+            <button>About</button>
+          </Link>
+
+          <Link to="/">
+            <button onClick={logout}>LogOut</button>
+          </Link>
+        </div>
+      </nav>
+    </div>
   );
 }

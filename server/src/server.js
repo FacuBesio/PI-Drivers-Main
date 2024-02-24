@@ -1,8 +1,9 @@
 const express = require("express");
 const router = require("./routes");
-const findAllTeams = require("./controllers/Teams/findAllTeams");
 const morgan = require("morgan");
 const cors = require("cors");
+
+//? SERVER
 const server = express();
 
 //*MIDDLEWARES

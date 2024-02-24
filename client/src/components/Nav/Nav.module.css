@@ -1,7 +1,17 @@
 /*** NAV ***/
-nav {
-  background-color: #333;
+.navContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin-top: 2em;
+  /* background-color: aquamarine; */
+
+}
+
+.navContainer nav {
+  background-color: #333;
+  /* margin-top: 2em; */
   /* Color de fondo del nav */
   display: flex;
   justify-content: space-between;
@@ -11,9 +21,9 @@ nav {
   transition: background-color 0.3s ease;
   width: 70%;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
-}
+  }
 
-nav button {
+.navContainer nav button {
   padding: 10px;
   background-color: #e74c3c;
   color: #fff;
@@ -24,13 +34,13 @@ nav button {
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
 }
 
-nav button:hover {
+.navContainer nav button:hover {
   background-color: #2b98c0;
   transition: all ease 0.2s;
   transform: scale(1.05);
 }
 
-nav button:not(:hover){
+.navContainer nav button:not(:hover){
   transition: all ease-in-out 0.2s;
 }
 
@@ -54,5 +64,10 @@ nav button:not(:hover){
   justify-content: end;
   align-items: center;
   gap: 0.6em;
+}
+
+.logOut button:focus {
+  background-color: #2b98c0;
+  transform: scale(1.05);
 }
 

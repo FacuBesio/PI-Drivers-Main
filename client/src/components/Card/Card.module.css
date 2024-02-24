@@ -1,6 +1,7 @@
 /*** CARD ***/
 .card {
   background-color: #444;
+  background-color: rgba(68, 68, 68, 0.6);
   width: 250px;
   gap: 1em;
   /* padding: 1em 0em; */
@@ -73,32 +74,60 @@
 }
 
 .textCard h2 {
-  font-size: 20px;
+  font-size: 22px;
   margin: 0;
   text-align: center;
 }
 
-/*** IMG ***/
+/*** CARD IMG ***/
+/* CONTAINER */
 .cardImg {
   display: flex;
   flex-direction: column;
-  justify-content: end;
   align-items: center;
   position: relative;
+  /* background-color: aquamarine; */
+}
+/* HEADER */
+.cardImgHeader {
+  top: 0;
+  position: absolute;
+  width: 100%;
+  padding: 1em 0em;
+  background-color: rgba(129, 152, 158, 0.4);
 }
 
-.cardImg img {
+.cardImgHeader h2 {
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+/* IMAGE */
+.cardImgBackGround {
+  width: 100%;
+  height: 400px;
+  padding: 0;
+  margin: 0;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  background-color: rgba(68, 68, 68, 0.6);
+}
+
+.cardImgBackGround img {
   width: 249px;
   height: 400px;
   object-fit: cover;
-  border-bottom-left-radius: 5%;
-  border-bottom-right-radius: 5%;
-  /* border-radius: 5%; */
+  border-bottom-left-radius: 2.5%;
+  border-bottom-right-radius: 2.5%;
   box-shadow: 2px 5px 27px -3px rgba(0, 0, 0, 0.75);
 }
 
-.imgIcons {
-  background-color: rgba(68, 68, 68, 0.6);
+/* FOOTER */
+.cardImgFooter {
+  bottom: 0;
+  background-color: rgba(129, 152, 158, 0.6);
   position: absolute;
   width: 100%;
   height: 15%;
@@ -113,10 +142,10 @@
   border-bottom-right-radius: 5%;
 }
 
-.imgIcons h2 {
+.cardImgFooter h2 {
   background-color: transparent;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
   margin: 0;
   width: 100%;
@@ -126,7 +155,7 @@
   justify-content: center;
 }
 
-.imgIcons h3 {
+.cardImgFooter h3 {
   background-color: transparent;
   color: #fff;
   font-size: 16px;
@@ -137,24 +166,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.favoritesButton {
-  padding: 5px;
-  background-color: transparent;
-  color: #fff;
-  border: transparent;
-  cursor: pointer;
-  font-size: 30px;
-  box-shadow: none;
-}
-
-.favoritesButton:hover {
-  background-color: transparent;
-  transform: scale(1.1);
-  transition: background-color 0.3s ease;
-}
-
-.favoritesButton:not(:hover) {
-  transition: all ease-in-out 0.2s;
 }
