@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllTeams } from "../../redux/actions_Teams";
 import { createDriver } from "../../redux/actions_Drivers";
-import { createInputValidator } from "../../utils/formCreate/createInputValidator";
+import createInputValidator from "../../utils/formCreate/createInputValidator";
+import dateLengthValidator from "../../utils/formCreate/dateLengthValidator";
 import style from "./Form.module.css";
 
 const CreateForm = () => {
@@ -14,15 +15,16 @@ const CreateForm = () => {
   const allTeams = useSelector((state) => state.allTeams);
 
   //? REACT STATES
-  const [driver, setDriver] = useState({
-    nombre: null,
-    apellido: null,
-    descripcion: null,
-    imagen: null,
-    nacionalidad: null,
-    fecha_Nacimiento: null,
-    teams: null,
-  });
+  const initialState = {
+    nombre: undefined,
+    apellido: undefined,
+    descripcion: undefined,
+    imagen: undefined,
+    nacionalidad: undefined,
+    fecha_Nacimiento: undefined,
+    teams: [],
+  };
+  const [driver, setDriver] = useState(initialState);
 
   const [errors, setErrors] = useState({
     nombre: "",
@@ -31,17 +33,27 @@ const CreateForm = () => {
     imagen: "",
     nacionalidad: "",
     fecha_Nacimiento: "",
-    teams: [],
+    teams: "",
   });
 
   //? HANDLERS
   const handlerChange = (event) => {
     const property = event.target.name;
     let value = event.target.value;
+    let driverInput = {};
 
-    setDriver({ ...driver, [property]: value });
-    setErrors({ ...driver, [property]: value });
-    createInputValidator({ ...driver, [property]: value }, errors, setErrors);
+    property === "fecha_Nacimiento" && (value = dateLengthValidator(value));
+    driverInput =
+      property === "teams"
+        ? value === "selectCleaner"
+          ? { ...driver, teams: ["cleanerActive"] }
+          : driver.teams[0] === "cleanerActive"
+          ? { ...driver, teams: [Number(value)] }
+          : { ...driver, teams: [...driver.teams, Number(value)] }
+        : { ...driver, [property]: value };
+
+    setDriver(driverInput);
+    createInputValidator(driverInput, errors, setErrors);
   };
 
   const submitHandler = (event) => {
@@ -59,16 +71,8 @@ const CreateForm = () => {
       "url('../src/assets/img/paul-kansonkho-uFTk52FoNzo-unsplash.jpg')";
     dispatch(getAllTeams());
     return () => {
-      setDriver({
-        nombre: "",
-        apellido: "",
-        descripcion: "",
-        imagen: "",
-        nacionalidad: "",
-        fecha_Nacimiento: "",
-        teams: [],
-      });
       document.body.style.backgroundImage = "";
+      setDriver(initialState);
     };
   }, []);
 
@@ -88,7 +92,7 @@ const CreateForm = () => {
             onChange={handlerChange}
             placeholder="Nombre..."
           />
-          <span>{errors.email}</span>
+          <span>{errors.nombre}</span>
 
           {/* APELLIDO */}
           <label htmlFor="apellido">Last Name: </label>
@@ -100,7 +104,7 @@ const CreateForm = () => {
             onChange={handlerChange}
             placeholder="Apellido..."
           />
-          <span>{errors.email}</span>
+          <span>{errors.apellido}</span>
 
           {/* NACIONALIDAD */}
           <label htmlFor="nacionalidad">Nationality: </label>
@@ -112,7 +116,7 @@ const CreateForm = () => {
             onChange={handlerChange}
             placeholder="Nacionalidad..."
           />
-          <span>{errors.email}</span>
+          <span>{errors.nacionalidad}</span>
 
           {/* FECHA DE NACIMIENTO */}
           <label htmlFor="fecha_Nacimiento">Date of Birth: </label>
@@ -124,18 +128,20 @@ const CreateForm = () => {
             onChange={handlerChange}
             placeholder="Fecha de Nacimiento (dd-mm-aa)..."
           />
-          <span>{errors.email}</span>
+          <span>{errors.fecha_Nacimiento}</span>
 
           {/* TEAMS */}
           <label htmlFor="teams">Teams: </label>
           <select
+            multiple
             id="teams"
             name="teams"
             onChange={handlerChange}
-            defaultValue=""
+            value={driver.teams}
           >
-            <option disabled value="">
-              Equipo...
+            <option value="cleanerActive" disabled hidden></option>
+            <option value="selectCleaner" className={style.cleanOption}>
+              Clean...
             </option>
             {allTeams?.map((team) => {
               return (
@@ -145,7 +151,7 @@ const CreateForm = () => {
               );
             })}
           </select>
-          <span>{errors.email}</span>
+          <span>{errors.teams}</span>
 
           {/* IMAGEN */}
           <label htmlFor="imagen">Image: </label>
@@ -169,13 +175,12 @@ const CreateForm = () => {
             onChange={handlerChange}
             placeholder="Descripción..."
           ></textarea>
-          <span>{errors.email}</span>
+          <span>{errors.descripcion}</span>
         </div>
 
         <div className={style.formButton}>
-          <button type="submit" disabled={errors.email || errors.password}>
-            CREATE
-          </button>
+          {/* <button type="submit" disabled={errors.email || errors.password}> */}
+          <button type="submit">CREATE</button>
         </div>
       </form>
     </div>

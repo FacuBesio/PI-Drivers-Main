@@ -1,5 +1,5 @@
 import SearchBar from "./SearchBar/SearchBar";
-import FilterBar from "./FilterBar/FilterBar";
+
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPage } from "../../redux/actions_Pages";

@@ -11,6 +11,7 @@
 
 .navContainer nav {
   background-color: #333;
+  /* background-color: rgba(68, 68, 68, 0.9); */
   /* margin-top: 2em; */
   /* Color de fondo del nav */
   display: flex;

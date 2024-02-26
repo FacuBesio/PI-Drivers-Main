@@ -15,7 +15,7 @@
   padding: 15px;
   text-align: center;
   /* background-color: #444; */
-  background-color: rgba(68, 68, 68, 0.75);
+  background-color: rgba(68, 68, 68, 0.7);
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px #000;
 }
@@ -23,6 +23,7 @@
 
 .cardsHeader {
   background-color: #333;
+  /* background-color: rgba(68, 68, 68, 0.9); */
   /* box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.67);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px; */

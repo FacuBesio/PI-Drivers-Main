@@ -13,7 +13,7 @@
   margin-top: 1em;
   padding: 15px;
   text-align: center;
-  background-color: #444;
+  background-color: rgba(68, 68, 68, 0.7);
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px #000;
 }
@@ -26,7 +26,7 @@
   margin-top: 2em;
   margin-bottom: 2em;
   padding-top: 2em;
-  background-color: #333;
+  background-color: rgba(68, 68, 68, 0.7);
   border-radius: 5px;
   width: 50%;
 }
@@ -35,7 +35,7 @@
   padding: 10px;
   font-size: 16px;
   font-weight: bolder;
-  border-radius: 5%;
+  border-radius: 5px;
   font-family: "Tektur", sans-serif;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
   width: 65%;
@@ -128,5 +128,31 @@
 }
 
 .formButton button:not(:hover){
+  transition: all ease-in-out 0.2s;
+}
+
+.cleanOption{
+
+  background-color: rgba(129, 152, 158, 0.4);
+  cursor: pointer;
+  /* color: #fff; */
+  border-radius: 5px;
+ 
+}
+
+.cleanOption:hover{
+  background-color: rgba(129, 152, 158, 0.5);
+  transition: all ease 0.2s;
+  transform: scale(1.01);
+  font-weight: bolder;
+}
+
+/* .cleanOption:active{
+  background-color: rgba(68, 68, 68, 0.5);
+  transition: all ease 0.2s;
+  transform: scale(1.05);
+} */
+
+.cleanOption:not(:hover){
   transition: all ease-in-out 0.2s;
 }
