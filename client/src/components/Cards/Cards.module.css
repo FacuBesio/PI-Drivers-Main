@@ -6,11 +6,12 @@
   align-items: center;
   justify-content: center;
   margin-top: 1em;
-  gap: 2em;
+  gap: 1em;
   width: 55%;
 }
 
-.cardsContainer h1 {
+.cardsContainer h1,
+h4 {
   margin: 0;
   padding: 15px;
   text-align: center;
@@ -20,6 +21,9 @@
   box-shadow: 0px 0px 10px 0px #000;
 }
 
+.cardsContainer h4 {
+  font-size: 24px;
+}
 
 .cardsHeader {
   background-color: #333;
@@ -52,23 +56,26 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2em;
+  margin-top: 1em;
   justify-content: center;
   width: 100%;
 }
 
-/*** BUTTONS PAGE ***/
-.buttonsPage {
+/*** BUTTONS CARD ***/
+.buttonsCards {
   width: 100%;
-  padding-bottom: 2em;
+  margin-top: 1em;
+  margin-bottom: 2em;
   display: flex;
   justify-content: center;
   gap: 2em;
 }
 
-button {
+.buttonsCards button {
   padding: 15px;
   font-size: 16px;
   background-color: #e74c3c;
+  margin: 0em 1em;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -77,19 +84,32 @@ button {
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
 }
 
-button:hover {
+.buttonsCards button:hover {
   background-color: #2b98c0;
   transition: all ease 0.2s;
   transform: scale(1.05);
 }
 
-button:not(:hover) {
+.buttonsCards button:not(:hover) {
   transition: all ease-in-out 0.2s;
 }
 
-[name="page"],
-[name="separator"],
-[name="totalPages"] {
+/* BUTTONS PAGE */
+.buttonsPage{
+  width: 100%;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.buttonsPage button[name="page"],
+  button[name="separator"],
+  button[name="totalPages"] {
   background-color: #2b98c0;
   background-color: rgba(68, 68, 68, 0.75);
   cursor: default;
@@ -99,4 +119,19 @@ button:not(:hover) {
 [name="separator"]:hover,
 [name="totalPages"]:hover {
   transform: scale(1);
+}
+
+.buttonsPage span {
+  color: rgb(187, 112, 112);
+  font-weight: bold;
+  /* width: 64%; */
+  text-align: start;
+}
+
+.pageLimit{
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* gap: 10em; */
 }

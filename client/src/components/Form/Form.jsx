@@ -10,10 +10,10 @@ import style from "./Form.module.css";
 const CreateForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let disabledButton = true;
 
   //? REDUX STATES
   const allTeams = useSelector((state) => state.allTeams);
-
   //? REACT STATES
   const initialState = {
     nombre: undefined,
@@ -37,6 +37,7 @@ const CreateForm = () => {
   });
 
   //? HANDLERS
+  //* HANDLER CHANGE
   const handlerChange = (event) => {
     const property = event.target.name;
     let value = event.target.value;
@@ -56,16 +57,34 @@ const CreateForm = () => {
     createInputValidator(driverInput, errors, setErrors);
   };
 
-  const submitHandler = (event) => {
+  //* HANDLER SUBMIT
+  const handlerSubmit = (event) => {
     event.preventDefault();
     createDriver(driver);
     alert(
       `Se creo exitosamente al conductor/a: ${driver.nombre} ${driver.apellido}`
     );
-    // window.location.reload();
     navigate("/home");
   };
 
+  //? DISABLED BUTTON
+  errors.nombre === "" &&
+  driver.nombre &&
+  errors.apellido === "" &&
+  driver.apellido &&
+  errors.nacionalidad === "" &&
+  driver.nacionalidad &&
+  errors.fecha_Nacimiento === "" &&
+  driver.fecha_Nacimiento &&
+  errors.teams === "" &&
+  driver.teams.length > 0 &&
+  errors.descripcion === "" &&
+  driver.descripcion
+    ? (disabledButton = false)
+    : (disabledButton = true);
+  console.log("disabledButton: ", disabledButton);
+
+  //? COMPONENT MOUNTING
   useEffect(() => {
     document.body.style.backgroundImage =
       "url('../src/assets/img/paul-kansonkho-uFTk52FoNzo-unsplash.jpg')";
@@ -79,7 +98,7 @@ const CreateForm = () => {
   return (
     <div className={style.formContainer}>
       <h1>CREATE DRIVERS</h1>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handlerSubmit}>
         {/***** INPUTS  *****/}
         <div className={style.formInputs}>
           {/* NOMBRE */}
@@ -179,8 +198,23 @@ const CreateForm = () => {
         </div>
 
         <div className={style.formButton}>
-          {/* <button type="submit" disabled={errors.email || errors.password}> */}
-          <button type="submit">CREATE</button>
+          {disabledButton ? (
+            <button
+              type="submit"
+              id={style.buttonDisabled}
+              disabled={disabledButton}
+            >
+              CREATE
+            </button>
+          ) : (
+            <button
+              type="submit"
+              id={style.buttonEnabled}
+              disabled={disabledButton}
+            >
+              CREATE
+            </button>
+          )}
         </div>
       </form>
     </div>

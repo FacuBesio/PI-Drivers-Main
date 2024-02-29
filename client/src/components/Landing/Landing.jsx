@@ -11,29 +11,7 @@ const Landing = () => {
           <img src={img} alt="" />
         </div>
 
-        <div className={style.formInputs}>
-          <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            // value={userData.email}
-            // onChange={handleChange}
-            placeholder="example@mail.com"
-          />
-          {/* <span>{errors.email}</span> */}
-
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            // value={userData.password}
-            // onChange={handleChange}
-            placeholder="******"
-          />
-          {/* <span>{errors.password}</span> */}
-        </div>
+     
 
         <div className={style.formButton}>
           {/* <button type="submit" disabled={errors.email || errors.password}> */}

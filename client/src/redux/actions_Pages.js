@@ -1,4 +1,10 @@
-import { BACK_PAGE, NEXT_PAGE, SET_PAGE, SET_TOTAL_PAGES } from "./actionsType";
+import { BACK_PAGE, NEXT_PAGE, HOME_CLEANER, SET_PAGE, SET_TOTAL_PAGES } from "./actionsType";
+
+//* HOME_CLEANER
+export const cleanHome = (value) => {
+  return { type: HOME_CLEANER, payload:value };
+};
+
 //* BACK_PAGE
 export const backPage = (page) => {
   if (page > 1) {
@@ -10,6 +16,7 @@ export const backPage = (page) => {
     return dispatch({ type: BACK_PAGE, payload: page });
   }
 };
+
 //* NEXT_PAGE
 export const nextPage = (page) => {
   return (dispatch) => {

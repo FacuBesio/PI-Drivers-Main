@@ -20,6 +20,7 @@ const getDrivers = async (req, res) => {
       filterDrivers = "",
       filterTeams = "",
     } = req.query;
+    
     let drivers = [];
 
     //* DRIVERS DB

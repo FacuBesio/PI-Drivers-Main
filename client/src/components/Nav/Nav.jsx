@@ -1,31 +1,42 @@
 import SearchBar from "./SearchBar/SearchBar";
-
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPage } from "../../redux/actions_Pages";
+import { cleanHome } from "../../redux/actions_Pages";
 import style from "./Nav.module.css";
 
-export default function Nav({ logout }) {
+export default function Nav() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  //* SET PAGE
-  const handlerSetPage = () => {
+  //* CLEANER
+  const cleaner = () => {
     dispatch(setPage(1));
+    dispatch(cleanHome(true));
+    navigate("/home");
   };
+
+  //* REGEX: 'pathname' TIENE ID
+  // function has_Id(pathname) {
+  //   const regex = /^\/home\/\d+$/i;
+  //   return regex.test(pathname);
+  // }
 
   return (
     <div className={style.navContainer}>
       <nav>
         {/* MENU */}
         <div className={style.menu}>
-          <Link to="/home">
-            <button onClick={handlerSetPage}>Home</button>
-          </Link>
-
-          {/* <Link to="/favorites">
-            <button>Favorites</button>
-          </Link> */}
+        <button onClick={cleaner}>Home</button>
+          {/* {pathname.startsWith("/home") && has_Id(pathname) 
+          ? (
+            <Link to={`/home`}>
+              <button>Home</button>
+            </Link>
+          ) : (
+            <button onClick={cleaner}>Home</button>
+          )} */}
 
           <Link to="/create">
             <button>Create</button>
@@ -33,23 +44,16 @@ export default function Nav({ logout }) {
         </div>
 
         {/* SEARCH BAR */}
-        {pathname.startsWith("/home") && <SearchBar logout={logout} />}
-
-        {/* FILTER BAR */}
-        {/* {pathname.startsWith("/home") && <FilterBar logout={logout} />} */}
+        {pathname.startsWith("/home") && <SearchBar />}
 
         {/* LOG OUT */}
         <div className={style.logOut}>
-          {/* <Link to="/favorites">
-            <button>Favorites</button>
-          </Link> */}
-
           <Link to="/about">
             <button>About</button>
           </Link>
 
           <Link to="/">
-            <button onClick={logout}>LogOut</button>
+            <button>LogOut</button>
           </Link>
         </div>
       </nav>

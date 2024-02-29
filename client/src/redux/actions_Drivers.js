@@ -5,7 +5,8 @@ import {
   GET_ALL_DRIVERS,
   GET_DRIVER_DETAIL,
   GET_DRIVERS_BY_QUERY_NAME,
-  SEARCH_DRIVER,
+  GET_DRIVER_BY_ID,
+  NOT_FOUND,
 } from "./actionsType";
 import axios from "axios";
 const URL_API = "http://localhost:5000/api/drivers";
@@ -31,7 +32,7 @@ export const cleanAllDrivers = () => {
 export const getAllDrivers = (page, orders, filters) => {
   const { orderNombre, orderNacimiento } = orders;
   const { filterTeams, filterDrivers } = filters;
-  // console.log("action: ", filterTeams);
+  
   return async (dispatch) => {
     const pageSize = 9;
     try {
@@ -42,7 +43,12 @@ export const getAllDrivers = (page, orders, filters) => {
       );
       return dispatch({ type: GET_ALL_DRIVERS, payload: data });
     } catch (error) {
-      console.log(error.message);
+      if ((error.message = "Request failed with status code 404")) {
+        console.log("error.message: ", error.message);
+        return dispatch({ type: NOT_FOUND, payload: error.message });
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };
@@ -61,7 +67,30 @@ export const getDriversByQueryName = (nameQuery, page, orders, filters) => {
       );
       return dispatch({ type: GET_DRIVERS_BY_QUERY_NAME, payload: data });
     } catch (error) {
-      console.log(error.message);
+      if ((error.message = "Request failed with status code 404")) {
+        console.log("error.message: ", error.message);
+        return dispatch({ type: NOT_FOUND, payload: error.message });
+      } else {
+        console.log(error.message);
+      }
+    }
+  };
+};
+
+//* GET_DRIVER_BY_ID
+export const getDriverById = (id) => {
+  return async (dispatch) => {
+    try {
+      if (!id) return alert("Ingresa un Id");
+      const { data } = await axios.get(`${URL}/${id}`);
+      return dispatch({ type: GET_DRIVER_BY_ID, payload: data });
+    } catch (error) {
+      if ((error.message = "Request failed with status code 404")) {
+        console.log("error.message: ", error.message);
+        return dispatch({ type: NOT_FOUND, payload: error.message });
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };
@@ -89,17 +118,4 @@ export const createDriver = async (driver) => {
   } catch (error) {
     console.log(error.message);
   }
-};
-
-//* SEARCH_DRIVER
-export const searchDriver = (id) => {
-  return async (dispatch) => {
-    try {
-      if (!id) return alert("Ingresa un Id");
-      const { data } = await axios.get(`${URL}/${id}`);
-      return dispatch({ type: SEARCH_DRIVER, payload: data });
-    } catch (error) {
-      console.log(`action Error: ${error.message}`);
-    }
-  };
 };

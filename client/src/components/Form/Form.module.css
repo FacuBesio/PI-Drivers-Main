@@ -41,6 +41,23 @@
   width: 65%;
 }
 
+.cleanOption{
+  background-color: rgba(129, 152, 158, 0.4);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cleanOption:hover{
+  background-color: rgba(129, 152, 158, 0.5);
+  transition: all ease 0.2s;
+  transform: scale(1.01);
+  font-weight: bolder;
+}
+
+.cleanOption:not(:hover){
+  transition: all ease-in-out 0.2s;
+}
+
 /*** IMG ***/
 .formImg {
   display: flex;
@@ -121,38 +138,30 @@
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.67);
 }
 
-.formButton button:hover {
+/* ENABLED */
+#buttonEnabled:hover {
   background-color: #309e3d;
   transition: all ease 0.2s;
   transform: scale(1.05);
 }
 
-.formButton button:not(:hover){
+#buttonEnabled:not(:hover){
   transition: all ease-in-out 0.2s;
 }
 
-.cleanOption{
-
-  background-color: rgba(129, 152, 158, 0.4);
-  cursor: pointer;
-  /* color: #fff; */
-  border-radius: 5px;
- 
+/* DISABLED */
+#buttonDisabled {
+  background-color: darkgrey;
 }
 
-.cleanOption:hover{
-  background-color: rgba(129, 152, 158, 0.5);
+#buttonDisabled:hover {
+  background-color: rgb(187, 112, 112);
   transition: all ease 0.2s;
-  transform: scale(1.01);
-  font-weight: bolder;
+  transform: scale(1.00);
 }
 
-/* .cleanOption:active{
-  background-color: rgba(68, 68, 68, 0.5);
-  transition: all ease 0.2s;
-  transform: scale(1.05);
-} */
-
-.cleanOption:not(:hover){
+#buttonDisabled:not(:hover){
   transition: all ease-in-out 0.2s;
 }
+
+

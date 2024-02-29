@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getDriverDetail, cleanDriverDetail } from "../../redux/actions_Drivers";
+import {
+  getDriverDetail,
+  cleanDriverDetail,
+} from "../../redux/actions_Drivers";
 import { Link, useParams } from "react-router-dom";
 import style from "./Detail.module.css";
 
@@ -12,17 +15,16 @@ const Detail = () => {
   let teams = "";
   if (driverDetail.teams) {
     driverDetail.teams.forEach((team) => {
-      teams === ""
-        ? (teams = team + ", ")
-        : (teams = teams + ", " + team);
+      teams === "" ? (teams = team + ", ") : (teams = teams + ", " + team);
     });
   }
 
   useEffect(() => {
     dispatch(getDriverDetail(id));
     return () => dispatch(cleanDriverDetail());
-  }, []);
+  }, [id]);
 
+  console.log("driverDetail.imagen: ", driverDetail.imagen);
   return (
     <div className={style.detail}>
       <section>
@@ -38,7 +40,11 @@ const Detail = () => {
           </div>
         </div>
         <div className={style.detailImg}>
-          <img src={driverDetail.imagen} alt="Imagen Personaje" />
+          {driverDetail.imagen ? (
+            <img src={driverDetail.imagen} alt="Imagen Personaje" />
+          ) : (
+            <p>Cargando imagen...</p>
+          )}
         </div>
       </section>
       <div>

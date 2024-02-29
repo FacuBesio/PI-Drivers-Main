@@ -2,12 +2,13 @@ const findDriverById = require("../../../controllers/Drivers/findDriverById");
 const findApiDataById = require("../../../controllers/Api/findApiDataById");
 const formattedDriver = require("../../../utils/formatted/formattedDriver");
 const formatted_API_Driver = require("../../../utils/formatted/formatted_API_Driver");
+const defaultImage = require("../../../utils/image/defaultImage");
 const { validate } = require("uuid");
 
 const getDriverById = async (req, res) => {
   try {
     const { id } = req.params;
-    const driver = [];
+    let driver = [];
 
     //* DRIVER DB
     const uuidValidate = validate(id.toString());
@@ -25,6 +26,9 @@ const getDriverById = async (req, res) => {
       .catch((error) => {
         console.error(error);
       });
+
+    //* CORRECION DE IMAGEN POR DEFAULT ({ imagen:"" o apiImagen })
+    driver = defaultImage(driver);
 
     return driver.length > 0
       ? res.status(200).json(driver)

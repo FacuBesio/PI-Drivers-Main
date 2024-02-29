@@ -5,11 +5,23 @@ import {
   GET_ALL_DRIVERS,
   GET_DRIVER_DETAIL,
   GET_DRIVERS_BY_QUERY_NAME,
-  SEARCH_DRIVER,
+  GET_DRIVER_BY_ID,
 } from "./actionsType";
-import { CLEAN_ALL_TEAMS, GET_ALL_TEAMS } from "./actionsType";
-import { BACK_PAGE, NEXT_PAGE, SET_PAGE, SET_TOTAL_PAGES } from "./actionsType";
-import { ADD_FAV, FILTER_FAV, ORDER_FAV, REMOVE_FAV } from "./actionsType";
+import { GET_ALL_TEAMS } from "./actionsType";
+import {
+  BACK_PAGE,
+  NEXT_PAGE,
+  HOME_CLEANER,
+  SET_PAGE,
+  SET_TOTAL_PAGES,
+} from "./actionsType";
+import { FILTER_STATUS, SET_ORDERS } from "./actionsType";
+import { CLEAN_ERRORS, NOT_FOUND } from "./actionsType";
+
+const orderInitialState = {
+  orderNombre: "",
+  orderNacimiento: "",
+};
 
 const inicialState = {
   allDrivers: [],
@@ -19,15 +31,35 @@ const inicialState = {
   myFavorites: [],
   page: "",
   totalPages: "",
+  orders:{...orderInitialState},
+  filterStatus: false,
+  homeCleaner: false,
+  notValue_error: false,
 };
 
 const reducer = (state = inicialState, action) => {
   switch (action.type) {
+    //? HOME
+    case HOME_CLEANER:
+      return {
+        ...state,
+        homeCleaner: action.payload,
+      };
+
     //? DRIVERS
+    case CLEAN_ALL_DRIVERS:
+      return {
+        ...state,
+        allDrivers: [],
+        totalPages: "",
+        notFound_error: "",
+      };
+
     case CLEAN_DRIVERS:
       return {
         ...state,
         drivers: [],
+        notFound_error: "",
       };
 
     case CLEAN_DRIVER_DETAIL:
@@ -36,24 +68,12 @@ const reducer = (state = inicialState, action) => {
         driverDetail: {},
       };
 
-    case CLEAN_ALL_DRIVERS:
-      return {
-        ...state,
-        allDrivers: [],
-        totalPages: "",
-      };
-
     case GET_ALL_DRIVERS:
       return {
         ...state,
         allDrivers: [...action.payload.drivers],
+        page: action.payload.page,
         totalPages: action.payload.totalPages,
-      };
-
-    case GET_DRIVER_DETAIL:
-      return {
-        ...state,
-        driverDetail: action.payload,
       };
 
     case GET_DRIVERS_BY_QUERY_NAME:
@@ -63,10 +83,16 @@ const reducer = (state = inicialState, action) => {
         totalPages: action.payload.totalPages,
       };
 
-    case SEARCH_DRIVER:
+    case GET_DRIVER_BY_ID:
       return {
         ...state,
         drivers: [...action.payload],
+      };
+
+    case GET_DRIVER_DETAIL:
+      return {
+        ...state,
+        driverDetail: action.payload,
       };
 
     //? TEAMS
@@ -99,6 +125,32 @@ const reducer = (state = inicialState, action) => {
       return {
         ...state,
         totalPages: action.payload,
+      };
+
+    //? ORDERS & FILTERS
+    case FILTER_STATUS:
+      return {
+        ...state,
+        filterStatus: action.payload,
+      };
+
+      case SET_ORDERS:
+      return {
+        ...state,
+        orders: {...action.payload},
+      };
+
+    //? ERRORS
+    case CLEAN_ERRORS:
+      return {
+        ...state,
+        notFound_error: "",
+      };
+
+    case NOT_FOUND:
+      return {
+        ...state,
+        notFound_error: action.payload,
       };
 
     default:
