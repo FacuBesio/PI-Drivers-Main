@@ -10,6 +10,7 @@ import style from "./Form.module.css";
 const CreateForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const imageURL = "http://localhost:5000/images/";
   let disabledButton = true;
 
   //? REDUX STATES
@@ -44,6 +45,12 @@ const CreateForm = () => {
     let driverInput = {};
 
     property === "fecha_Nacimiento" && (value = dateLengthValidator(value));
+    // if (property === "imagen") {
+    //   if (value) {
+    //     value = imageURL + value;
+    //   }
+    // }
+
     driverInput =
       property === "teams"
         ? value === "selectCleaner"
@@ -60,7 +67,13 @@ const CreateForm = () => {
   //* HANDLER SUBMIT
   const handlerSubmit = (event) => {
     event.preventDefault();
-    createDriver(driver);
+    
+    // INYECION DE 'imageURL'
+    let driver_aux = { ...driver };
+    if (driver_aux.imagen) {
+      driver_aux.imagen = imageURL + driver_aux.imagen;
+    }
+    createDriver(driver_aux);
     alert(
       `Se creo exitosamente al conductor/a: ${driver.nombre} ${driver.apellido}`
     );
@@ -87,7 +100,7 @@ const CreateForm = () => {
   //? COMPONENT MOUNTING
   useEffect(() => {
     document.body.style.backgroundImage =
-      "url('../src/assets/img/paul-kansonkho-uFTk52FoNzo-unsplash.jpg')";
+      "url('../src/assets/img/backgruond_2.jpg')";
     dispatch(getAllTeams());
     return () => {
       document.body.style.backgroundImage = "";

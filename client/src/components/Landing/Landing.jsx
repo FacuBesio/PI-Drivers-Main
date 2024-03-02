@@ -1,4 +1,4 @@
-import img from "../../assets/img/f1_1.webp";
+import img from "../../assets/img/f1_2.webp";
 import style from "./Landing.module.css";
 import { Link } from "react-router-dom";
 

@@ -110,16 +110,27 @@ h4 {
 .buttonsPage button[name="page"],
   button[name="separator"],
   button[name="totalPages"] {
-  background-color: #2b98c0;
-  background-color: rgba(68, 68, 68, 0.75);
+   background-color: rgba(68, 68, 68, 0.75);
   cursor: default;
 }
 
-[name="page"]:hover,
-[name="separator"]:hover,
-[name="totalPages"]:hover {
+.buttonsPage button[name="page"]:hover,
+button[name="separator"]:hover,
+button[name="totalPages"]:hover {
+  background-color: #2b98c0;
   transform: scale(1);
 }
+
+.buttonsPage button[name="firstPage"],
+  button[name="lastPage"]{
+   background-color: rgba(68, 68, 68, 0.75);
+}
+
+.buttonsPage button[name="firstPage"]:hover,
+button[name="firstPage"]:hover {
+  background-color: #2b98c0;
+}
+
 
 .buttonsPage span {
   color: rgb(187, 112, 112);
@@ -129,9 +140,7 @@ h4 {
 }
 
 .pageLimit{
-
   width: 100%;
   display: flex;
   justify-content: center;
-  /* gap: 10em; */
 }

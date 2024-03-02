@@ -5,7 +5,7 @@ const About = () => {
   //? COMPONENT MOUNTING
   useEffect(() => {
     document.body.style.backgroundImage =
-      "url('../src/assets/img/paul-kansonkho-uFTk52FoNzo-unsplash.jpg')";
+      "url('../src/assets/img/backgruond_2.jpg')";
     return () => (document.body.style.backgroundImage = "");
   }, []);
 

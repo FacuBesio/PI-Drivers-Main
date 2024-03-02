@@ -1,5 +1,3 @@
-// const axios = require("axios");
-// const URL = "https://rickandmortyapi.com/api/character/";
 const { Driver, Team } = require("../../db");
 
 const { Op } = require("sequelize");

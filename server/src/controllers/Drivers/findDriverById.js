@@ -1,5 +1,4 @@
 const { Driver, Team } = require("../../db");
-const URL = "https://rickandmortyapi.com/api/character/";
 
 const findDriverById = async (id) => {
   const driver = await Driver.findByPk(id, {

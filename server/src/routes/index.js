@@ -3,6 +3,7 @@ const router = Router();
 const routerDrivers = require("./drivers");
 const routerApi = require("./api");
 const routerTeams = require("./teams");
+const routerImages = require("./images");
 
 
 //? RUTAS
@@ -13,6 +14,7 @@ router.get("/", (req, res) => {
 router.use("/drivers", routerDrivers);
 router.use("/teams", routerTeams);
 router.use("/api", routerApi);
+router.use("/images", routerImages);
 
 
 module.exports = router;

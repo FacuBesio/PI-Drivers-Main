@@ -20,6 +20,8 @@ const Cards = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const nameQuery = queryParams.get("name");
+  const firstPageIcon = "<<";
+  const lastPageIcon = ">>";
 
   //? REDUX STATES
   const allDrivers = useSelector((state) => state.allDrivers);
@@ -88,6 +90,18 @@ const Cards = () => {
       ? dispatch(backPage(page))
       : setPageLimitBack("*Ya estas en la primera página");
   };
+
+  //* FIRST PAGE
+  const handlerFirstPage = () => {
+    dispatch(setPage(1))
+  };
+
+   //* FIRST PAGE
+   const handlerLastPage = () => {
+    dispatch(setPage(totalPages))
+  };
+
+
 
   //* ERRORS CLEANER
   const errorsCleaner = () => {
@@ -206,9 +220,15 @@ const Cards = () => {
           <div className={style.buttonsPage}>
             <div>
               <button onClick={handlerBackPage}>Back</button>
+              <button name="firstPage" onClick={handlerFirstPage}>
+                {firstPageIcon}
+              </button>
               <button name="page">{page}</button>
               <button name="separator">/</button>
               <button name="totalPages">{totalPages}</button>
+              <button name="lastPage" onClick={handlerLastPage}>
+                {lastPageIcon}
+              </button>
               <button onClick={handlerNextPage}>Next</button>
             </div>
             <div className={style.pageLimit}>

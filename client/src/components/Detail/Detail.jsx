@@ -13,19 +13,25 @@ const Detail = () => {
   const driverDetail = useSelector((state) => state.driverDetail);
   const nombreCompleto = driverDetail.nombre + " " + driverDetail.apellido;
   let teams = "";
-  if (driverDetail.teams) {
-    driverDetail.teams.forEach((team) => {
-      teams === "" ? (teams = team + ", ") : (teams = teams + ", " + team);
+
+
+if (driverDetail.teams) {
+  driverDetail.teams.forEach((team, index) => {
+      if (index === 0) {
+        teams = team;
+      } else {
+        teams = teams + ", " + team;
+      }
     });
   }
 
+  //? COMPONENT MOUNTING
   useEffect(() => {
     dispatch(getDriverDetail(id));
     return () => dispatch(cleanDriverDetail());
   }, [id]);
 
-  console.log("driverDetail.imagen: ", driverDetail.imagen);
-  return (
+   return (
     <div className={style.detail}>
       <section>
         <div className={style.detailContainer}>
